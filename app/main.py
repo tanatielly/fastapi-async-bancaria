@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from app import models  # noqa: F401 - importa os models para o create_all enxergar as tabelas
 from app.database import criar_tabelas
 
 
