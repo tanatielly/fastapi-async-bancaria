@@ -1,3 +1,6 @@
+from typing import Annotated
+
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
 
@@ -16,6 +19,10 @@ async def get_sessao():
     """Dependência que abre uma sessão com o banco para cada requisição."""
     async with SessaoLocal() as sessao:
         yield sessao
+
+
+# atalho pra não repetir o Depends em todas as rotas
+SessaoDep = Annotated[AsyncSession, Depends(get_sessao)]
 
 
 async def criar_tabelas():
