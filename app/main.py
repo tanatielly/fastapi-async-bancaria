@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from app import models  # noqa: F401 - importa os models para o create_all enxergar as tabelas
 from app.database import criar_tabelas
-from app.routers import auth, contas
+from app.routers import auth, contas, transacoes
 
 
 @asynccontextmanager
@@ -18,6 +18,7 @@ app = FastAPI(title="API Bancária Assíncrona", lifespan=lifespan)
 
 app.include_router(auth.router)
 app.include_router(contas.router)
+app.include_router(transacoes.router)
 
 
 @app.get("/")
