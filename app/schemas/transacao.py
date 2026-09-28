@@ -4,6 +4,7 @@ from decimal import Decimal
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.models.transacao import TipoTransacao
+from app.schemas.conta import ContaResposta
 
 
 class TransacaoCriar(BaseModel):
@@ -22,3 +23,8 @@ class TransacaoResposta(BaseModel):
     valor: Decimal
     descricao: str | None
     criada_em: datetime
+
+
+class ExtratoResposta(BaseModel):
+    conta: ContaResposta
+    transacoes: list[TransacaoResposta]
